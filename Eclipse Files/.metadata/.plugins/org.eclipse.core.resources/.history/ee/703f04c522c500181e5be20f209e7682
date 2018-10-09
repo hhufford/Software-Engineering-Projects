@@ -1,0 +1,67 @@
+/**
+ * 
+ *Authors: Evan Lim, Heidi Hufford 
+ */
+
+
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class ScoreTrakker {
+	private ArrayList<Student> studentList = new ArrayList<Student>();
+
+	public ScoreTrakker() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void loadDataFromFile(String filename) {
+		
+		FileReader reader;
+		try {
+			reader = new FileReader(filename);
+			
+			Scanner in = new Scanner(reader);
+			
+			while (in.hasNextLine()) {
+				String name = in.nextLine();
+				int score = in.nextInt();
+				Student s = new Student(name, score);
+				studentList.add(s);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("The file could not be found.");
+		}
+		
+	
+	}
+	
+	public void printInOrder() {
+		Collections.sort(studentList);
+		System.out.println("Student Score List ");
+		for(Student s: studentList)
+		{
+			System.out.println(s);
+		}
+	}
+	
+	public void processFiles() 
+	{
+		loadDataFromFile("scores.txt");
+		printInOrder();
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		ScoreTrakker tracker  = new ScoreTrakker();
+		processFiles();
+	}
+	
+	
+}

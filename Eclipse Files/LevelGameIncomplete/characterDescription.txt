@@ -1,0 +1,15 @@
+Game Description
+
+Implements Drawable (no interaction, no movement, doesn't extend GamePiece)
+ -DrawablePiece
+
+extends GamePiece and implements Moveable
+ - Fourth: Moves one space right each time. Once it gets to the rightmost space, it jumps to the leftmost space and continues right.
+ - Fifth: Moves randomly
+
+extends GamePiece, InteractionResult
+ -NONE: First
+ -GET_POINT: Second [Interacts on same square]
+ -ADVANCE: Third [Interacts on same square]
+ -KILL: Fourth [Interacts on same square]
+ -HIT: Fifth   [This one interacts at a distance; if it is 2 spaces to the right of the player, they interact]

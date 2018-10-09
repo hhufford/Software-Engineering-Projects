@@ -1,0 +1,93 @@
+package experiment;
+
+import java.util.*;
+
+/**
+ * 
+ * @author Adam McNeil and Heidi Hufford
+ *
+ *IntBoard contains our grid and adjacency lists for each cell
+ */
+public class IntBoard {
+	private Map<BoardCell, Set<BoardCell>> adjMtx;
+	private Set<BoardCell> visited;
+	private Set<BoardCell> targets;
+	private BoardCell[][] grid;
+	
+	
+	public IntBoard() {
+		super();
+		grid = new BoardCell[4][4];
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				grid[i][j] = new BoardCell(i,j);
+			}
+		}
+	}
+
+	/**
+	 * Calculates the adjacency list for each grid cells and stores results in Map adjMtx
+	 */
+	public void calcAdjancies() {
+		Set<BoardCell> tempCells = new HashSet<>();
+		for(BoardCell[] cellRow: grid) {
+			for(BoardCell cell: cellRow) {
+				if(cell.getRow() - 1 >= 0) {
+					tempCells.add(grid[cell.getRow()-1][cell.getColumn()]);
+				}
+				if(cell.getRow() + 1 <= 3) {
+					tempCells.add(grid[cell.getRow()+1][cell.getColumn()]);
+				}
+				if(cell.getColumn() - 1 >= 0) {
+					tempCells.add(grid[cell.getRow()][cell.getColumn()-1]);
+				}
+				if(cell.getColumn() + 1 <= 3) {
+					tempCells.add(grid[cell.getRow()][cell.getColumn()+1]);
+				}
+				adjMtx.put(cell, tempCells);
+				tempCells.clear();
+			}
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * @param cell -- given cell
+	 * @return  Set of BoardCells holding the adjacency matrix for the given cell
+	 */
+	public Set<BoardCell> getAdjList(BoardCell cell){
+		return adjMtx.get(cell);
+	}
+	
+	/**
+	 * 
+	 * @param startCell -- current location of player
+	 * @param pathLength -- distance that the player must travel
+	 * 
+	 * Stores lists of possible locations the player can go in Set targets
+	 */
+	public void calcTargets(BoardCell startCell, int pathLength) {
+		
+	}
+	
+	/**
+	 * 
+	 * @return Set targets
+	 */
+	public Set<BoardCell> getTargets() {
+		Set<BoardCell> temp = null;
+		return temp;
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param i BoardCell row
+	 * @param j BoardCell column
+	 * @return BoardCell 
+	 */
+	public BoardCell getCell(int i, int j) {
+		return grid[i][j];
+	}
+}

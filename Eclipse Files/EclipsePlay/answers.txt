@@ -1,0 +1,13 @@
+C02A Eclipse and Java
+Heidi Hufford
+
+1. File->Revert reverts the file to the last saved version. In other words, it undoes everything that has happened
+	since you last saved the file.
+2. It starts by printing the question, Who's coming to the Party? to the screen. Then it enters the 
+    loop, and for each friend in the ArrayList of friend objects, it prints out information about each 
+    person (their name and email) based on the toString function in the Friend class. In the debugging 
+    mode, you can see each part of what the loop is doing.
+3. The program no longer knows how to print out a Friend object. The toString function allowed us to
+	specify how we wanted the object's information to be presented when system.out.println is used. 
+	Therefore, it printed out what appears to be the memory address at which each friend object is 
+	stored.
